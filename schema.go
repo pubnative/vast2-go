@@ -39,7 +39,7 @@ type Creatives struct {
 type Creative struct {
 	Id           string        `xml:"id,attr,omitempty"`
 	Sequence     int           `xml:"sequence,attr,omitempty"`
-	AdID         string        `xml:"AdID,omitempty"`
+	AdID         string        `xml:"AdID,attr,omitempty"`
 	Linear       *Linear       `xml:"Linear,omitempty"`
 	CompanionAds *CompanionAds `xml:"CompanionAds,omitempty"`
 	NonLinearAds *NonLinearAds `xml:"NonLinearAds,omitempty"`
@@ -47,7 +47,7 @@ type Creative struct {
 
 type Linear struct {
 	Duration       string          `xml:"Duration"`
-	AdParameters   string          `xml:"AdParameters"`
+	AdParameters   string          `xml:"AdParameters,omitempty"`
 	TrackingEvents *TrackingEvents `xml:"TrackingEvents,omitempty"`
 	VideoClicks    *VideoClicks    `xml:"VideoClicks,omitempty"`
 	MediaFiles     MediaFiles      `xml:"MediaFiles"`
@@ -70,7 +70,7 @@ type VideoClicks struct {
 
 type CustomClick struct {
 	Id   string `xml:"id,attr,omitempty"`
-	Data string `xml:,chardata`
+	Data string `xml:",chardata"`
 }
 
 type MediaFiles struct {
@@ -91,32 +91,32 @@ type MediaFile struct {
 }
 
 type CompanionAds struct {
+	Companion []Companion `xml:"Companion,omitempty"`
+}
+
+type Companion struct {
+	Id                    string          `xml:"id,attr,omitempty"`
+	Width                 int             `xml:"width,attr"`
+	Height                int             `xml:"height,attr"`
+	ExpandedWidth         int             `xml:"expandedWidth,attr,omitempty"`
+	ExpandedHeight        int             `xml:"expandedHeight,attr,omitempty"`
+	ApiFramework          string          `xml:"apiFramework,attr,omitempty"`
 	IFrameResource        string          `xml:"IFrameResource,omitempty"`
 	HTMLResource          string          `xml:"HTMLResource,omitempty"`
 	CompanionClickThrough string          `xml:"CompanionClickThrough,omitempty"`
 	AltText               string          `xml:"AltText,omitempty"`
 	AdParameters          string          `xml:"AdParameters,omitempty"`
-	Companion             []Companion     `xml:"Companion,omitempty"`
-	StaticResource        StaticResource  `xml:"StaticResource,omitempty"`
+	StaticResource        *StaticResource `xml:"StaticResource,omitempty"`
 	TrackingEvents        *TrackingEvents `xml:"TrackingEvents,omitempty"`
 }
 
-type Companion struct {
-	Id             string `xml:"id,attr,omitempty"`
-	Width          int    `xml:"width,attr"`
-	Height         int    `xml:"height,attr"`
-	ExpandedWidth  int    `xml:"expandedWidth,attr,omitempty"`
-	ExpandedHeight int    `xml:"expandedHeight,attr,omitempty"`
-	ApiFramework   string `xml:"apiFramework,attr,omitempty"`
-}
-
 type StaticResource struct {
-	CreativeType string `xml:"creativeType"`
+	CreativeType string `xml:"creativeType,attr"`
 	Data         string `xml:",chardata"`
 }
 
 type NonLinearAds struct {
-	NonLinear *NonLinear `xml:"NonLinear,omitempty"`
+	NonLinear []NonLinear `xml:"NonLinear,omitempty"`
 }
 
 type NonLinear struct {
@@ -134,7 +134,6 @@ type NonLinear struct {
 	NonLinearClickThrough string          `xml:"NonLinearClickThrough,omitempty"`
 	StaticResource        *StaticResource `xml:"StaticResource,omitempty"`
 	TrackingEvents        *TrackingEvents `xml:"TrackingEvents,omitempty"`
-	Data                  string          `xml:",chardata"`
 }
 
 type Extensions struct {
