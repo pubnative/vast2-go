@@ -2,7 +2,7 @@ package vast2
 
 type VAST struct {
 	Version string `xml:"version,attr"`
-	Ad      Ad     `xml:"Ad"`
+	Ad      []Ad   `xml:"Ad"`
 }
 
 type Ad struct {
