@@ -137,6 +137,11 @@ type NonLinear struct {
 }
 
 type Extensions struct {
+	Extension []Extension `xml:"Extension"`
+}
+
+type Extension struct {
+	Type string `xml:"type,attr,omitempty"`
 	Data []byte `xml:",innerxml"`
 }
 

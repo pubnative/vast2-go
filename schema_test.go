@@ -491,11 +491,25 @@ func TestNonLinearWithNestedObjects(t *testing.T) {
 
 func TestExtensions(t *testing.T) {
 	ext := Extensions{
-		Data: []byte("<Price>2.5</Price>"),
+		Extension: []Extension{
+			Extension{
+				Type: "price",
+				Data: []byte("<Price>2.5</Price>"),
+			},
+			Extension{
+				Type: "model",
+				Data: []byte("<Model>cpm</Model>"),
+			},
+		},
 	}
 	data, err := xml.Marshal(ext)
 	assert.Nil(t, err)
-	assert.Equal(t, string(data), `<Extensions><Price>2.5</Price></Extensions>`)
+
+	res := `<Extensions>` +
+		`<Extension type="price"><Price>2.5</Price></Extension>` +
+		`<Extension type="model"><Model>cpm</Model></Extension>` +
+		`</Extensions>`
+	assert.Equal(t, string(data), res)
 }
 
 func TestWrapperDefault(t *testing.T) {
