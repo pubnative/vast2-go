@@ -6,7 +6,7 @@ type VAST struct {
 }
 
 type Ad struct {
-	Id      string   `xml:"id,attr"`
+	ID      string   `xml:"id,attr"`
 	InLine  *InLine  `xml:"InLine,omitempty"`
 	Wrapper *Wrapper `xml:"Wrapper,omitempty"`
 }
@@ -28,7 +28,7 @@ type AdSystem struct {
 }
 
 type Impression struct {
-	Id   string `xml:"id,attr,omitempty"`
+	ID   string `xml:"id,attr,omitempty"`
 	Data string `xml:",chardata"`
 }
 
@@ -37,7 +37,7 @@ type Creatives struct {
 }
 
 type Creative struct {
-	Id           string        `xml:"id,attr,omitempty"`
+	ID           string        `xml:"id,attr,omitempty"`
 	Sequence     int           `xml:"sequence,attr,omitempty"`
 	AdID         string        `xml:"AdID,attr,omitempty"`
 	Linear       *Linear       `xml:"Linear,omitempty"`
@@ -69,7 +69,7 @@ type VideoClicks struct {
 }
 
 type CustomClick struct {
-	Id   string `xml:"id,attr,omitempty"`
+	ID   string `xml:"id,attr,omitempty"`
 	Data string `xml:",chardata"`
 }
 
@@ -78,7 +78,7 @@ type MediaFiles struct {
 }
 
 type MediaFile struct {
-	Id                  string `xml:"id,attr,omitempty"`
+	ID                  string `xml:"id,attr,omitempty"`
 	Delivery            string `xml:"delivery,attr"`
 	Type                string `xml:"type,attr"`
 	Bitrate             int    `xml:"bitrate,attr,omitempty"`
@@ -95,7 +95,7 @@ type CompanionAds struct {
 }
 
 type Companion struct {
-	Id                    string          `xml:"id,attr,omitempty"`
+	ID                    string          `xml:"id,attr,omitempty"`
 	Width                 int             `xml:"width,attr"`
 	Height                int             `xml:"height,attr"`
 	ExpandedWidth         int             `xml:"expandedWidth,attr,omitempty"`
@@ -120,7 +120,7 @@ type NonLinearAds struct {
 }
 
 type NonLinear struct {
-	Id                    string          `xml:"id,attr,omitempty"`
+	ID                    string          `xml:"id,attr,omitempty"`
 	Width                 int             `xml:"width,attr"`
 	Height                int             `xml:"height,attr"`
 	ExpandedWidth         int             `xml:"expandedWidth,attr,omitempty"`
@@ -146,9 +146,10 @@ type Extension struct {
 }
 
 type Wrapper struct {
-	VASTAdTagURI string      `xml:"VASTAdTagURI"`
-	Error        string      `xml:"Error,omitempty"`
-	AdSystem     AdSystem    `xml:"AdSystem"`
-	Creatives    Creatives   `xml:"Creatives"`
-	Extensions   *Extensions `xml:"Extensions,omitempty"`
+	VASTAdTagURI string       `xml:"VASTAdTagURI"`
+	Error        string       `xml:"Error,omitempty"`
+	AdSystem     AdSystem     `xml:"AdSystem"`
+	Impression   []Impression `xml:"Impression,omitempty"`
+	Creatives    Creatives    `xml:"Creatives"`
+	Extensions   *Extensions  `xml:"Extensions,omitempty"`
 }

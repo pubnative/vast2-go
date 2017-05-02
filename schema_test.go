@@ -43,14 +43,14 @@ func TestAdDefault(t *testing.T) {
 }
 
 func TestAdWithAttrs(t *testing.T) {
-	ad := Ad{Id: "123"}
+	ad := Ad{ID: "123"}
 	data, err := xml.Marshal(ad)
 	assert.Nil(t, err)
 	assert.Equal(t, string(data), `<Ad id="123"></Ad>`)
 }
 
 func TestAdWithNestedObjects(t *testing.T) {
-	ad := Ad{Id: "123", InLine: &InLine{}, Wrapper: &Wrapper{}}
+	ad := Ad{ID: "123", InLine: &InLine{}, Wrapper: &Wrapper{}}
 	data, err := xml.Marshal(ad)
 	assert.Nil(t, err)
 
@@ -93,7 +93,7 @@ func TestInLineWithAttrs(t *testing.T) {
 
 func TestInLineWithNestedObjects(t *testing.T) {
 	inLine := InLine{
-		Impression: []Impression{Impression{}, Impression{}},
+		Impression: []Impression{{}, {}},
 		Extensions: &Extensions{},
 	}
 	data, err := xml.Marshal(inLine)
@@ -129,7 +129,7 @@ func TestImpressionDefault(t *testing.T) {
 }
 
 func TestImpressionWithAttrs(t *testing.T) {
-	imp := Impression{Id: "1", Data: "http://imp.com"}
+	imp := Impression{ID: "1", Data: "http://imp.com"}
 	data, err := xml.Marshal(imp)
 	assert.Nil(t, err)
 	assert.Equal(t, string(data), `<Impression id="1">http://imp.com</Impression>`)
@@ -143,7 +143,7 @@ func TestCreativesDefault(t *testing.T) {
 }
 
 func TestCreativesWithNestedObjects(t *testing.T) {
-	creatives := Creatives{Creative: []Creative{Creative{}, Creative{}}}
+	creatives := Creatives{Creative: []Creative{{}, {}}}
 	data, err := xml.Marshal(creatives)
 	assert.Nil(t, err)
 	assert.Equal(t, string(data), `<Creatives><Creative></Creative><Creative></Creative></Creatives>`)
@@ -157,7 +157,7 @@ func TestCreativeDefault(t *testing.T) {
 }
 
 func TestCreativeWithAttrs(t *testing.T) {
-	creative := Creative{Id: "a1", Sequence: 2, AdID: "ID3"}
+	creative := Creative{ID: "a1", Sequence: 2, AdID: "ID3"}
 	data, err := xml.Marshal(creative)
 	assert.Nil(t, err)
 	assert.Equal(t, string(data), `<Creative id="a1" sequence="2" AdID="ID3"></Creative>`)
@@ -219,7 +219,7 @@ func TestTrackingEventsDefault(t *testing.T) {
 }
 
 func TestTrackingEventsWithNestedObjects(t *testing.T) {
-	events := TrackingEvents{Tracking: []Tracking{Tracking{}, Tracking{}}}
+	events := TrackingEvents{Tracking: []Tracking{{}, {}}}
 	data, err := xml.Marshal(events)
 	assert.Nil(t, err)
 
@@ -280,7 +280,7 @@ func TestCustomClickDefault(t *testing.T) {
 }
 
 func TestCustomClickWithAttrs(t *testing.T) {
-	click := CustomClick{Id: "1", Data: "http://clk.com"}
+	click := CustomClick{ID: "1", Data: "http://clk.com"}
 	data, err := xml.Marshal(click)
 	assert.Nil(t, err)
 	assert.Equal(t, string(data), `<CustomClick id="1">http://clk.com</CustomClick>`)
@@ -294,7 +294,7 @@ func TestMediaFilesDefault(t *testing.T) {
 }
 
 func TestMediaFilesWithNestedObjects(t *testing.T) {
-	files := MediaFiles{MediaFile: []MediaFile{MediaFile{}, MediaFile{}}}
+	files := MediaFiles{MediaFile: []MediaFile{{}, {}}}
 	data, err := xml.Marshal(files)
 	assert.Nil(t, err)
 
@@ -314,7 +314,7 @@ func TestMediaFileDefault(t *testing.T) {
 
 func TestMediaFileWithAttrs(t *testing.T) {
 	file := MediaFile{
-		Id:                  "123",
+		ID:                  "123",
 		Delivery:            "progressive",
 		Type:                "video/mp4",
 		Bitrate:             1,
@@ -342,7 +342,7 @@ func TestCompanionAdsDefault(t *testing.T) {
 }
 
 func TestCompanionAdsWithNestedObjects(t *testing.T) {
-	ads := CompanionAds{Companion: []Companion{Companion{}, Companion{}}}
+	ads := CompanionAds{Companion: []Companion{{}, {}}}
 	data, err := xml.Marshal(ads)
 	assert.Nil(t, err)
 
@@ -363,7 +363,7 @@ func TestCompanionDefault(t *testing.T) {
 
 func TestCompanionWithAttrs(t *testing.T) {
 	companion := Companion{
-		Id:                    "ab1",
+		ID:                    "ab1",
 		Width:                 300,
 		Height:                250,
 		ExpandedWidth:         350,
@@ -426,7 +426,7 @@ func TestNonLinearAdsDefault(t *testing.T) {
 }
 
 func TestNonLinearAdsWithNestedObjects(t *testing.T) {
-	ads := NonLinearAds{NonLinear: []NonLinear{NonLinear{}, NonLinear{}}}
+	ads := NonLinearAds{NonLinear: []NonLinear{{}, {}}}
 	data, err := xml.Marshal(ads)
 	assert.Nil(t, err)
 
@@ -447,7 +447,7 @@ func TestNonLinearDefault(t *testing.T) {
 
 func TestNonLinearWithAttrs(t *testing.T) {
 	ad := NonLinear{
-		Id:                    "a1",
+		ID:                    "a1",
 		Width:                 300,
 		Height:                250,
 		ExpandedWidth:         350,
@@ -492,11 +492,11 @@ func TestNonLinearWithNestedObjects(t *testing.T) {
 func TestExtensions(t *testing.T) {
 	ext := Extensions{
 		Extension: []Extension{
-			Extension{
+			{
 				Type: "price",
 				Data: []byte("<Price>2.5</Price>"),
 			},
-			Extension{
+			{
 				Type: "model",
 				Data: []byte("<Model>cpm</Model>"),
 			},
@@ -543,6 +543,7 @@ func TestWrapperWithAttrs(t *testing.T) {
 func TestWrapperWithNestedObjects(t *testing.T) {
 	wrapper := Wrapper{
 		AdSystem:   AdSystem{},
+		Impression: []Impression{{}, {}},
 		Creatives:  Creatives{},
 		Extensions: &Extensions{},
 	}
@@ -551,7 +552,10 @@ func TestWrapperWithNestedObjects(t *testing.T) {
 
 	res := `<Wrapper>` +
 		`<VASTAdTagURI></VASTAdTagURI>` +
-		`<AdSystem></AdSystem><Creatives></Creatives>` +
+		`<AdSystem></AdSystem>` +
+		`<Impression></Impression>` +
+		`<Impression></Impression>` +
+		`<Creatives></Creatives>` +
 		`<Extensions></Extensions>` +
 		`</Wrapper>`
 	assert.Equal(t, string(data), res)
