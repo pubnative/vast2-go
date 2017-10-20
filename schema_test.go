@@ -426,13 +426,17 @@ func TestNonLinearAdsDefault(t *testing.T) {
 }
 
 func TestNonLinearAdsWithNestedObjects(t *testing.T) {
-	ads := NonLinearAds{NonLinear: []NonLinear{{}, {}}}
+	ads := NonLinearAds{
+		NonLinear:      []NonLinear{{}, {}},
+		TrackingEvents: &TrackingEvents{},
+	}
 	data, err := xml.Marshal(ads)
 	assert.Nil(t, err)
 
 	res := `<NonLinearAds>` +
 		`<NonLinear width="0" height="0"></NonLinear>` +
 		`<NonLinear width="0" height="0"></NonLinear>` +
+		`<TrackingEvents></TrackingEvents>` +
 		`</NonLinearAds>`
 
 	assert.Equal(t, string(data), res)
@@ -477,14 +481,12 @@ func TestNonLinearWithAttrs(t *testing.T) {
 func TestNonLinearWithNestedObjects(t *testing.T) {
 	ad := NonLinear{
 		StaticResource: &StaticResource{},
-		TrackingEvents: &TrackingEvents{},
 	}
 	data, err := xml.Marshal(ad)
 	assert.Nil(t, err)
 
 	res := `<NonLinear width="0" height="0">` +
 		`<StaticResource creativeType=""></StaticResource>` +
-		`<TrackingEvents></TrackingEvents>` +
 		`</NonLinear>`
 	assert.Equal(t, string(data), res)
 }

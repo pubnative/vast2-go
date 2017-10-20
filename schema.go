@@ -116,7 +116,8 @@ type StaticResource struct {
 }
 
 type NonLinearAds struct {
-	NonLinear []NonLinear `xml:"NonLinear,omitempty"`
+	NonLinear      []NonLinear     `xml:"NonLinear,omitempty"`
+	TrackingEvents *TrackingEvents `xml:"TrackingEvents,omitempty"`
 }
 
 type NonLinear struct {
@@ -133,7 +134,6 @@ type NonLinear struct {
 	AdParameters          string          `xml:"AdParameters,omitempty"`
 	NonLinearClickThrough string          `xml:"NonLinearClickThrough,omitempty"`
 	StaticResource        *StaticResource `xml:"StaticResource,omitempty"`
-	TrackingEvents        *TrackingEvents `xml:"TrackingEvents,omitempty"`
 }
 
 type Extensions struct {
