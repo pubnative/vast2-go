@@ -64,7 +64,7 @@ type Tracking struct {
 
 type VideoClicks struct {
 	ClickThrough  string       `xml:"ClickThrough,omitempty"`
-	ClickTracking string       `xml:"ClickTracking,omitempty"`
+	ClickTracking []string     `xml:"ClickTracking,omitempty"`
 	CustomClick   *CustomClick `xml:"CustomClick,omitempty"`
 }
 
