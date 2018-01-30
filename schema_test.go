@@ -253,7 +253,7 @@ func TestVideoClicksDefault(t *testing.T) {
 func TestVideoClicksWithAttrs(t *testing.T) {
 	clicks := VideoClicks{
 		ClickThrough:  "http://clk.com",
-		ClickTracking: "http://tr.com",
+		ClickTracking: []string{"http://tr.com", "http://tr2.com"},
 	}
 	data, err := xml.Marshal(clicks)
 	assert.Nil(t, err)
@@ -261,6 +261,7 @@ func TestVideoClicksWithAttrs(t *testing.T) {
 	res := `<VideoClicks>` +
 		`<ClickThrough>http://clk.com</ClickThrough>` +
 		`<ClickTracking>http://tr.com</ClickTracking>` +
+		`<ClickTracking>http://tr2.com</ClickTracking>` +
 		`</VideoClicks>`
 	assert.Equal(t, string(data), res)
 }
